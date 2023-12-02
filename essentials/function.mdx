@@ -1,0 +1,24 @@
+---
+title: "Function Calling"
+description: "Example overview page before API endpoints"
+---
+
+
+OpenAI introduced function calling in their latest ChatGPT models. But the open-source models were unable to call functions until the most recent or finetuned models. You specify functions in the API request like `information_extraction()` or `send_email()`. The model will intelligently choose when to call a function and return JSON matching the function schema.
+
+This allows creating chatbots that leverage external APIs, converting natural language queries to API calls, and extracting structured data - all by defining functions for the model to potentially invoke. 
+
+The model returns a JSON you can use to call the function yourself. You need to parse the JSON, validate it, and call your function as needed. There are risks if functions impact the real world actions, so build in validation before taking any actions with the returned arguments, especially on a user's behalf.
+
+More details and the overall flow can be found on [OpenAI's functions release](https://openai.com/blog/function-calling-and-other-api-updates) and is summarized below:
+
+1. Send query and function definitions to the model
+
+2. Model returns JSON adhering to function schema if it chooses to call one 
+
+3. Parse and validate JSON in your code, call real function if valid
+
+4. Send function result back to model to summarize for user
+
+
+For tips and help on how to use functions join our [Discord community](https://discord.gg/sxcd9hfbkJ).
